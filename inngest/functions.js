@@ -1,4 +1,4 @@
-import prisma from "@lib/prisma";
+import prisma from "@/lib/prisma";
 import { inngest } from "./client";
 
 //Inngest function to save user data to a database
