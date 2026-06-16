@@ -1,12 +1,14 @@
 import prisma from "@/lib/prisma";
-import { inngest } from "./client";
+import { inngest } from "@/inngest/client";
 
-//Inngest function to save user data to a database
+// Inngest function to save user data to a database
 export const syncUserCreation = inngest.createFunction(
-    {id: "sync-user-create"},
-    {event: "clerk/user.created"},
+    { 
+      id: "sync-user-create", 
+      triggers: [{ event: "clerk/user.created" }] 
+    },
     async ({ event }) => {
-        const {data} = event;
+        const { data } = event;
         await prisma.user.create({
             data: {
                 id: data.id,
@@ -14,34 +16,38 @@ export const syncUserCreation = inngest.createFunction(
                 name: `${data.first_name} ${data.last_name}`,
                 image: data.image_url
             }
-        })
+        });
     }
-)
+);
 
 export const syncUserUpdation = inngest.createFunction(
-    {id: "sync-user-update"},
-    {event: "clerk/user.updated"},
+    { 
+      id: "sync-user-update", 
+      triggers: [{ event: "clerk/user.updated" }] 
+    },
     async ({ event }) => {
-        const {data} = event;
+        const { data } = event;
         await prisma.user.update({
-            where: {id: data.id},
-             data: {
+            where: { id: data.id },
+            data: {
                 email: data.email_addresses[0].email_address,
                 name: `${data.first_name} ${data.last_name}`,
                 image: data.image_url
             }   
-        })
+        });
     }
-)
+);
 
-//Inngest function to delete user from the database
+// Inngest function to delete user from the database
 export const syncUserDeletion = inngest.createFunction(
-    {id: "sync-user-delete"},
-    {event: "clerk/user.deleted"},
+    { 
+      id: "sync-user-delete", 
+      triggers: [{ event: "clerk/user.deleted" }] 
+    },
     async ({ event }) => {
-        const {data} = event;
+        const { data } = event;
         await prisma.user.delete({
-            where: {id: data.id}  
-        })
+            where: { id: data.id }  
+        });
     }
-)
+);
