@@ -29,10 +29,10 @@ export async function GET(request) {
             totalProducts: products.length,
         }
 
-        return NextResponse.json(dashboardData);
+        return NextResponse.json({dashboardData});
 
     } catch (error) {
         console.error(error);
-        return NextResponse({error: error.message || error.code}, { status: 500 });
+        return NextResponse.json({error: error.message || error.code}, { status: 500 });
     }
 }

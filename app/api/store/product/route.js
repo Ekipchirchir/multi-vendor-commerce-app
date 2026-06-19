@@ -29,7 +29,7 @@ export async function POST(request){
 
         //Uploading images to imagekit
         const imagesUrl = await Promise.all(images.map(async (image) => {
-            const buffer = Buffer.from(await image.arrBuffer());
+            const buffer = Buffer.from(await image.arrayBuffer());
             const response = await imagekit.upload({
                 file: buffer,
                 fileName: image.name,
@@ -40,7 +40,7 @@ export async function POST(request){
                 transformation: [
                     {quality: "auto"},
                     {format: "webp"},
-                    {with: "1024"}
+                    {width: "1024"}
                 ]
             })
             return url;
