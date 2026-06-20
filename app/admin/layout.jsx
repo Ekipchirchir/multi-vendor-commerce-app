@@ -3,8 +3,8 @@ import { SignIn } from "@clerk/nextjs";
 import AdminLayout from "@/components/admin/AdminLayout";
 
 export const metadata = {
-  title: "GoCart. - Admin",
-  description: "GoCart. - Admin",
+  title: "NovaCart. - Admin",
+  description: "NovaCart. - Admin",
 };
 
 export default async function RootAdminLayout({ children }) {

@@ -3,8 +3,8 @@ import { SignIn } from "@clerk/nextjs";
 import StoreLayout from "@/components/store/StoreLayout";
 
 export const metadata = {
-  title: "GoCart. - Store Dashboard",
-  description: "GoCart. - Store Dashboard",
+  title: "NovaCart. - Store Dashboard",
+  description: "NovaCart. - Store Dashboard",
 };
 
 export default async function RootAdminLayout({ children }) {
