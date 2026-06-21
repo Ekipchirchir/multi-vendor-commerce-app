@@ -59,7 +59,7 @@ const OrderSummary = ({ totalPrice, items }) => {
            }
 
            if(coupon){
-            orderData.coupon = coupon.code;
+            orderData.couponCode = coupon.code;
            }
 
            //create order
